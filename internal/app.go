@@ -10,8 +10,11 @@ import (
 var router *gin.Engine
 
 func GetApp() *gin.Engine {
-	router := gin.Default()
+	// init env
+	initializers.InitializeEnv()
 
+	router := gin.Default()
+	
 	// init database
 	initializers.InitializeDatabase()
 

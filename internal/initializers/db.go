@@ -2,6 +2,7 @@ package initializers
 
 import (
 	"log"
+	"os"
 
 	"gorm.io/driver/sqlite"
 	"gorm.io/gorm"
@@ -13,7 +14,9 @@ var DB *gorm.DB
 
 func InitializeDatabase() {
 	var err error
-	DB, err = gorm.Open(sqlite.Open("urlshortener.db"), &gorm.Config{})
+
+	dbName := os.Getenv("DB_NAME")
+	DB, err = gorm.Open(sqlite.Open(dbName), &gorm.Config{})
 
 	if err != nil {
 		log.Fatal("There was an error connnecting to the database")
