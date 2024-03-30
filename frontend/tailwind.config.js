@@ -9,7 +9,8 @@ module.exports = {
         'blue': '#2161E0',
         'red': '#E93266',
         'black': '#101044',
-        'grey': '#54547A'
+        'grey': '#54547A',
+        'gold': '#b3ecec'
       },
       fontFamily: {
         themeFont: ['themeFont', 'sans-serif'],
