@@ -1,7 +1,9 @@
 package controllers
 
 import (
+	"os"
 	"log"
+	"fmt"
 	"net/http"
 
 	"github.com/andyfusniak/base58"
@@ -50,11 +52,19 @@ func ShortenUrl(c *gin.Context) {
 	// shorturl entry created
 	log.Println("Short url entry created")
 
+	// building url
+	var scheme = "https"
+	if os.Getenv("USE_TLS") == "False" {
+		scheme = "http"
+	}
+
+	var domain = os.Getenv("DOMAIN")
+
 	c.IndentedJSON(
 		http.StatusCreated,
 		gin.H{
 			"msg": "Created",
-			"url": "http://localhost:8080/" + slug,
+			"url": fmt.Sprintf("%s://%s/%s", scheme, domain, slug),
 		},
 	)
 }

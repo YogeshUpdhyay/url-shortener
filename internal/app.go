@@ -2,6 +2,7 @@ package internal
 
 import (
 	"github.com/gin-gonic/gin"
+	"github.com/gin-contrib/cors"
 
 	"url-shortner/internal/initializers"
 	"url-shortner/internal/routes"
@@ -14,6 +15,15 @@ func GetApp() *gin.Engine {
 	initializers.InitializeEnv()
 
 	router := gin.Default()
+
+	// CORS middleware configuration
+    config := cors.DefaultConfig()
+    config.AllowAllOrigins = true
+    config.AllowMethods = []string{"GET", "POST", "PUT", "DELETE", "OPTIONS"}
+    config.AllowHeaders = []string{"Origin", "Content-Type"}
+
+	// Use CORS middleware
+    router.Use(cors.New(config))
 	
 	// init database
 	initializers.InitializeDatabase()

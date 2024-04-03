@@ -1,0 +1,10 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@font-face {
+    font-family: 'themeFont';
+    src: url('./assets/fonts/Josefin_Slab/JosefinSlab-VariableFont_wght.ttf') format('truetype');
+    /* Add more src definitions for different font weights or styles if needed */
+}
+  
