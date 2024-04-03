@@ -23,5 +23,9 @@ func RedirectUrl(c *gin.Context) {
 	}
 
 	// redirecting the url
-	c.Redirect(http.StatusTemporaryRedirect, shortUrl.URL)
+	// c.Header("Access-Control-Allow-Origin", "*")
+	// c.RedirectPermanent(shortUrl.URL)
+	c.Status(301)
+	c.Header("Location", shortUrl.URL)
+	c.Abort()
 }
