@@ -80,7 +80,7 @@ const HeroSection = () => {
                                 onClick={copyToClipboard}
                                 whileTap={{scale: 0.8}}
                             >
-                                <img src={shortenLink} alt="" srcset="" className="absolute -left-10 -top-16 h-32 w-32"/>
+                                <img src={shortenLink} alt="" className="absolute -left-10 -top-16 h-32 w-32"/>
                                 <input 
                                     type="text" 
                                     className="ps-14 h-10 rounded-xl focus:outline-none active:outline-none w-full color-inherit" 

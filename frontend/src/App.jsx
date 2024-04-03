@@ -1,14 +1,19 @@
-import HeroSection from "./components/Hero"
-import Navbar from "./components/Navbar"
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 
-
+import Home from './pages/Home';
+import Loader from './pages/Loader';
+import LinkHandler from './pages/LinkHandler';
 
 function App() {
+
   return (
-    <div className="flex flex-col w-screen h-screen ">
-      <Navbar />
-      <HeroSection />
-    </div>  
+    <Router>
+      <Routes>
+        <Route path="/" element={<Loader />} />
+        <Route path="/app" element={<Home />} />
+        <Route path="/:linkId" element={<LinkHandler />} />
+      </Routes>
+    </Router>
   )
 }
 
