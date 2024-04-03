@@ -7,7 +7,10 @@ import (
 )
 
 func RegisterRoutes(router *gin.Engine) {
-	router.POST("/shortenurl", controllers.ShortenUrl)
+	apiRouter := router.Group("/api/v1")
+	{
+		apiRouter.POST("/shortenurl", controllers.ShortenUrl)
+		apiRouter.POST("/deleteurl", controllers.DeleteUrl)
+	}
 	router.GET("/:slug", controllers.RedirectUrl)
-	router.POST("/deleteurl", controllers.DeleteUrl)
 }

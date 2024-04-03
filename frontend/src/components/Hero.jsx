@@ -6,15 +6,29 @@ import { motion, AnimatePresence } from "framer-motion"
 const HeroSection = () => { 
     const [url, setUrl] = useState()
     const [isShortLinkOpen, setIsShortLinkOpen] = useState(false)
+    const [shortUrl, setShortUrl] = useState()
+
     
     const onSubmit = () => {
         console.log(url)
+
+        const options = {
+            body: JSON.stringify({url: url}),
+            headers: {'Content-Type': 'aplication/json'},
+            method: 'POST'
+        }
+        
+        fetch("http://localhost:8080/api/v1/shortenurl", options)
+            .then(response => response.json())
+            .then(data => setShortUrl(data.url))
+            .catch(error => console.log(error))
+
         setIsShortLinkOpen(!isShortLinkOpen)
     }
 
     const copyToClipboard = () => {
         console.log("Copy to clipboard")
-        navigator.clipboard.writeText(url).then(function() {
+        navigator.clipboard.writeText(shortUrl).then(function() {
             console.log("Text copied to clipboard successfully");
         }).catch(function(error) {
             console.error("Unable to copy text: ", error);
@@ -72,6 +86,7 @@ const HeroSection = () => {
                                     className="ps-14 h-10 rounded-xl focus:outline-none active:outline-none w-full color-inherit" 
                                     placeholder="https://linksy.com/TYubiug8"
                                     disabled={true}
+                                    value={shortUrl}
                                 />
                                 <label htmlFor="" className="text-xs text-red">Click To Copy!</label>
                         </motion.button>}
