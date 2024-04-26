@@ -1,0 +1,14 @@
+# Specify the address and port to listen on
+:80
+
+# Define routes for serving the React build and reverse proxying
+
+# Serve the React build for the root path ("/") and paths starting with "/app"
+@frontend {
+    path /
+    path /app/*
+}
+# Reverse proxy requests to the backend server for paths with a linkId parameter
+not @frontend reverse_proxy http://localhost:8080
+
+root * /usr/share/caddy
