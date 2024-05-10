@@ -11,7 +11,7 @@ func RegisterRoutes(router *gin.Engine) {
 	{
 		apiRouter.POST("/shortenurl", controllers.ShortenUrl)
 		apiRouter.POST("/deleteurl", controllers.DeleteUrl)
-		apiRouter.GET("/:slug", controllers.RedirectUrl)
 	}
-	
+	router.GET("/:slug", controllers.RedirectUrl)
+	router.GET("/", controllers.RedirectToApp)
 }
