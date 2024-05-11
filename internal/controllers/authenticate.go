@@ -7,6 +7,7 @@ import (
 	"github.com/YogeshUpdhyay/url-shortner/internal/initializers"
 	"github.com/YogeshUpdhyay/url-shortner/internal/models"
 	"github.com/YogeshUpdhyay/url-shortner/internal/serializers"
+	"github.com/YogeshUpdhyay/url-shortner/internal/utils"
 
 	"github.com/gin-gonic/gin"
 	"golang.org/x/crypto/bcrypt"
@@ -76,4 +77,25 @@ func Authenticate(ctx *gin.Context) {
 		return
 	}
 
+	// create token based on the user for access
+	token, err := utils.CreateUserAccessToken(string(rune(user.ID)))
+	if err != nil {
+		log.Println("Authenticate: There was error generating token for the user.")
+		ctx.AbortWithStatusJSON(
+			http.StatusInternalServerError,
+			gin.H{
+				"msg":    "Internal Server Error",
+				"detail": err.Error(),
+			},
+		)
+		return
+	}
+
+	ctx.JSON(
+		http.StatusOK,
+		&serializers.AuthenticateResponse{
+			Token:   token,
+			Success: true,
+		},
+	)
 }
