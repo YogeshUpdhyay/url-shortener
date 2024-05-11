@@ -78,7 +78,7 @@ func Authenticate(ctx *gin.Context) {
 	}
 
 	// create token based on the user for access
-	token, err := utils.CreateUserAccessToken(string(rune(user.ID)))
+	token, err := utils.CreateUserAccessToken(user.ID)
 	if err != nil {
 		log.Println("Authenticate: There was error generating token for the user.")
 		ctx.AbortWithStatusJSON(

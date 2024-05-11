@@ -28,6 +28,9 @@ func GetApp() *gin.Engine {
 	// init database
 	initializers.InitializeDatabase()
 
+	// init system defaults
+	initializers.InitSystemDefaults()
+
 	// registering routes
 	routes.RegisterRoutes(router)
 

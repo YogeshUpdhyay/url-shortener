@@ -2,8 +2,12 @@ package constants
 
 // application constants
 const (
-	Empty             = ""
-	ContextAppNameKey = "appName"
+	Empty                = ""
+	ContextAppNameKey    = "appName"
+	TokenExpirationHours = 12
+
+	RootUserEmailEnvKey    = "ROOT_USER_EMAIL"
+	RootUserPasswordEnvKey = "ROOT_USER_PASSWORD"
 
 	// header keys
 	AuthHeaderKey   = "Authorization"

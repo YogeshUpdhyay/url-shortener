@@ -1,6 +1,12 @@
 package utils
 
-import "github.com/gin-gonic/gin"
+import (
+	"log"
+
+	"github.com/YogeshUpdhyay/url-shortner/internal/constants"
+	"github.com/gin-gonic/gin"
+	"golang.org/x/crypto/bcrypt"
+)
 
 func GetHeaders(ctx *gin.Context) map[string]string {
 	headers := map[string]string{}
@@ -9,4 +15,14 @@ func GetHeaders(ctx *gin.Context) map[string]string {
 		headers[key] = value[0]
 	}
 	return headers
+}
+
+func GetHashedPasswordString(password string) (string, error) {
+	hashedPassword, err := bcrypt.GenerateFromPassword([]byte(password), bcrypt.DefaultCost)
+	if err != nil {
+		log.Println("GenerateHashedPassword: Error generating password hash")
+		return constants.Empty, err
+	}
+
+	return string(hashedPassword), nil
 }

@@ -6,12 +6,13 @@ import (
 	"crypto/elliptic"
 	"log"
 	"os"
+	"time"
 
 	"github.com/YogeshUpdhyay/url-shortner/internal/constants"
 	"github.com/golang-jwt/jwt/v5"
 )
 
-func CreateUserAccessToken(userId string) (string, error) {
+func CreateUserAccessToken(userId uint) (string, error) {
 	privateKeyBytes, err := os.ReadFile("signingkey.pem")
 	if err != nil {
 		log.Println("CreateUserAccessToken: Error reading the signing key file")
@@ -25,7 +26,10 @@ func CreateUserAccessToken(userId string) (string, error) {
 		return constants.Empty, err
 	}
 
-	token := jwt.New(jwt.SigningMethodES256)
+	token := jwt.NewWithClaims(jwt.SigningMethodES256, jwt.MapClaims{
+		"userId": userId,
+		"exp":    time.Now().Add(time.Hour * constants.TokenExpirationHours).Unix(),
+	})
 	tokenString, err := token.SignedString(privateKey)
 	if err != nil {
 		log.Println("CreateUserAccessToken: Error creaing the token string")
