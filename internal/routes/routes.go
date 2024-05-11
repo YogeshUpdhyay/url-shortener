@@ -3,15 +3,25 @@ package routes
 import (
 	"github.com/gin-gonic/gin"
 
-	"url-shortner/internal/controllers"
+	"github.com/YogeshUpdhyay/url-shortner/internal/constants"
+	"github.com/YogeshUpdhyay/url-shortner/internal/controllers"
 )
 
 func RegisterRoutes(router *gin.Engine) {
-	apiRouter := router.Group("/api/v1")
+	// api routes
+	apiRouter := router.Group(constants.ApiRoute)
 	{
-		apiRouter.POST("/shortenurl", controllers.ShortenUrl)
-		apiRouter.POST("/deleteurl", controllers.DeleteUrl)
+		// v1 routes
+		v1Router := apiRouter.Group(constants.V1Route)
+		{
+			v1Router.POST(constants.ShortenUrlRoute, controllers.ShortenUrl)
+			v1Router.POST(constants.DeleteUrlRoute, controllers.DeleteUrl)
+			v1Router.POST(constants.AuthenticateRoute, controllers.Authenticate)
+
+		}
 	}
-	router.GET("/:slug", controllers.RedirectUrl)
-	router.GET("/", controllers.RedirectToApp)
+
+	// ui routes
+	router.GET(constants.RedirectUrlRoute, controllers.RedirectUrl)
+	router.GET(constants.RedirectToAppRoute, controllers.RedirectToApp)
 }

@@ -7,7 +7,7 @@ import (
 	"gorm.io/driver/sqlite"
 	"gorm.io/gorm"
 
-	"url-shortner/internal/models"
+	"github.com/YogeshUpdhyay/url-shortner/internal/models"
 )
 
 var DB *gorm.DB
@@ -23,5 +23,9 @@ func InitializeDatabase() {
 	}
 
 	// add migration here
-	DB.AutoMigrate(&models.ShortUrl{})
+	DB.AutoMigrate(
+		&models.ShortUrl{},
+		&models.Credential{},
+		&models.User{},
+	)
 }

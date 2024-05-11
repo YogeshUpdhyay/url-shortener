@@ -6,8 +6,8 @@ import (
 
 	"github.com/gin-gonic/gin"
 
-	"url-shortner/internal/initializers"
-	"url-shortner/internal/models"
+	"github.com/YogeshUpdhyay/url-shortner/internal/initializers"
+	"github.com/YogeshUpdhyay/url-shortner/internal/models"
 )
 
 func RedirectUrl(c *gin.Context) {
@@ -22,9 +22,6 @@ func RedirectUrl(c *gin.Context) {
 		return
 	}
 
-	// redirecting the url
-	// c.Header("Access-Control-Allow-Origin", "*")
-	// c.RedirectPermanent(shortUrl.URL)
 	c.Status(301)
 	c.Header("Location", shortUrl.URL)
 	c.Abort()

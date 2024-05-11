@@ -1,16 +1,16 @@
 package controllers
 
 import (
-	"os"
-	"log"
 	"fmt"
+	"log"
 	"net/http"
+	"os"
 
 	"github.com/andyfusniak/base58"
 	"github.com/gin-gonic/gin"
 
-	"url-shortner/internal/initializers"
-	"url-shortner/internal/models"
+	"github.com/YogeshUpdhyay/url-shortner/internal/initializers"
+	"github.com/YogeshUpdhyay/url-shortner/internal/models"
 )
 
 type ShortenUrlPayload struct {

@@ -4,21 +4,19 @@ import (
 	"log"
 
 	"net/http"
+
 	"github.com/gin-gonic/gin"
 
-	"url-shortner/internal/models"
-	"url-shortner/internal/initializers"
+	"github.com/YogeshUpdhyay/url-shortner/internal/initializers"
+	"github.com/YogeshUpdhyay/url-shortner/internal/models"
+	"github.com/YogeshUpdhyay/url-shortner/internal/serializers"
 )
-
-type DeleteUrlPayload struct {
-	Slug string `json:"slug"`
-}
 
 func DeleteUrl(c *gin.Context) {
 	log.Println("Delete the url")
 
 	// parsing the payload
-	var payload DeleteUrlPayload
+	var payload serializers.DeleteUrlRequest
 	err := c.BindJSON(&payload)
 	if err != nil {
 		// Return a 400 Bad Request response if JSON binding fails
