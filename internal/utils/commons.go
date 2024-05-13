@@ -1,9 +1,11 @@
 package utils
 
 import (
+	"crypto/rand"
+	"encoding/base64"
 	"log"
 
-	"github.com/YogeshUpdhyay/url-shortner/internal/constants"
+	"github.com/YogeshUpdhyay/url-shortener/internal/constants"
 	"github.com/gin-gonic/gin"
 	"golang.org/x/crypto/bcrypt"
 )
@@ -25,4 +27,20 @@ func GetHashedPasswordString(password string) (string, error) {
 	}
 
 	return string(hashedPassword), nil
+}
+
+func GenerateRandomString() (string, error) {
+	// Create a byte slice to store the random bytes
+	randomBytes := make([]byte, constants.ApiKeyLength)
+
+	// Read random bytes from crypto/rand into the byte slice
+	_, err := rand.Read(randomBytes)
+	if err != nil {
+		return "", err
+	}
+
+	// Encode the random bytes to base64 to get a random string
+	randomString := base64.StdEncoding.EncodeToString(randomBytes)
+
+	return randomString, nil
 }

@@ -4,8 +4,8 @@ import (
 	"github.com/gin-contrib/cors"
 	"github.com/gin-gonic/gin"
 
-	"github.com/YogeshUpdhyay/url-shortner/internal/initializers"
-	"github.com/YogeshUpdhyay/url-shortner/internal/routes"
+	"github.com/YogeshUpdhyay/url-shortener/internal/initializers"
+	"github.com/YogeshUpdhyay/url-shortener/internal/routes"
 )
 
 var router *gin.Engine

@@ -3,8 +3,8 @@ package routes
 import (
 	"github.com/gin-gonic/gin"
 
-	"github.com/YogeshUpdhyay/url-shortner/internal/constants"
-	"github.com/YogeshUpdhyay/url-shortner/internal/controllers"
+	"github.com/YogeshUpdhyay/url-shortener/internal/constants"
+	"github.com/YogeshUpdhyay/url-shortener/internal/controllers"
 )
 
 func RegisterRoutes(router *gin.Engine) {
@@ -17,6 +17,7 @@ func RegisterRoutes(router *gin.Engine) {
 			v1Router.POST(constants.ShortenUrlRoute, controllers.ShortenUrl)
 			v1Router.POST(constants.DeleteUrlRoute, controllers.DeleteUrl)
 			v1Router.POST(constants.AuthenticateRoute, controllers.Authenticate)
+			v1Router.POST(constants.CreateAppRoute, controllers.CreateApp)
 
 		}
 	}

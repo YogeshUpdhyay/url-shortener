@@ -1,4 +1,4 @@
-module github.com/YogeshUpdhyay/url-shortner
+module github.com/YogeshUpdhyay/url-shortener
 
 go 1.21.5
 

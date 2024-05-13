@@ -9,8 +9,8 @@ import (
 	"github.com/andyfusniak/base58"
 	"github.com/gin-gonic/gin"
 
-	"github.com/YogeshUpdhyay/url-shortner/internal/initializers"
-	"github.com/YogeshUpdhyay/url-shortner/internal/models"
+	"github.com/YogeshUpdhyay/url-shortener/internal/initializers"
+	"github.com/YogeshUpdhyay/url-shortener/internal/models"
 )
 
 type ShortenUrlPayload struct {

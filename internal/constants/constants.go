@@ -5,6 +5,7 @@ const (
 	Empty                = ""
 	ContextAppNameKey    = "appName"
 	TokenExpirationHours = 12
+	ApiKeyLength         = 24
 
 	RootUserEmailEnvKey    = "ROOT_USER_EMAIL"
 	RootUserPasswordEnvKey = "ROOT_USER_PASSWORD"
@@ -23,6 +24,7 @@ const (
 	ShortenUrlRoute   = "/shortenurl"
 	DeleteUrlRoute    = "/deleteurl"
 	AuthenticateRoute = "/authenticate"
+	CreateAppRoute    = "/createapp"
 
 	// app route constants
 	RedirectUrlRoute   = "/:slug"

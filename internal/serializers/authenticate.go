@@ -1,6 +1,6 @@
 package serializers
 
-import "github.com/YogeshUpdhyay/url-shortner/internal/constants"
+import "github.com/YogeshUpdhyay/url-shortener/internal/constants"
 
 type AuthenticateRequest struct {
 	Email    string `json:"email"`

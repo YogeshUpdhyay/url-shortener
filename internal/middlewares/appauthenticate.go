@@ -4,9 +4,9 @@ import (
 	"log"
 	"net/http"
 
-	"github.com/YogeshUpdhyay/url-shortner/internal/constants"
-	"github.com/YogeshUpdhyay/url-shortner/internal/initializers"
-	"github.com/YogeshUpdhyay/url-shortner/internal/models"
+	"github.com/YogeshUpdhyay/url-shortener/internal/constants"
+	"github.com/YogeshUpdhyay/url-shortener/internal/initializers"
+	"github.com/YogeshUpdhyay/url-shortener/internal/models"
 	"github.com/gin-gonic/gin"
 )
 

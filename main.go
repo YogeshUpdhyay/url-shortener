@@ -1,7 +1,7 @@
 package main
 
 import (
-	app "github.com/YogeshUpdhyay/url-shortner/internal"
+	app "github.com/YogeshUpdhyay/url-shortener/internal"
 )
 
 func main() {

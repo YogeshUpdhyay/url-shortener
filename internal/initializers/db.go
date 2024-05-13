@@ -7,7 +7,7 @@ import (
 	"gorm.io/driver/sqlite"
 	"gorm.io/gorm"
 
-	"github.com/YogeshUpdhyay/url-shortner/internal/models"
+	"github.com/YogeshUpdhyay/url-shortener/internal/models"
 )
 
 var DB *gorm.DB

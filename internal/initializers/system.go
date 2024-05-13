@@ -4,9 +4,9 @@ import (
 	"log"
 	"os"
 
-	"github.com/YogeshUpdhyay/url-shortner/internal/constants"
-	"github.com/YogeshUpdhyay/url-shortner/internal/models"
-	"github.com/YogeshUpdhyay/url-shortner/internal/utils"
+	"github.com/YogeshUpdhyay/url-shortener/internal/constants"
+	"github.com/YogeshUpdhyay/url-shortener/internal/models"
+	"github.com/YogeshUpdhyay/url-shortener/internal/utils"
 )
 
 func InitSystemDefaults() {

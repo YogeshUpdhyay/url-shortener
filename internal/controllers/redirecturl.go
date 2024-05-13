@@ -6,8 +6,8 @@ import (
 
 	"github.com/gin-gonic/gin"
 
-	"github.com/YogeshUpdhyay/url-shortner/internal/initializers"
-	"github.com/YogeshUpdhyay/url-shortner/internal/models"
+	"github.com/YogeshUpdhyay/url-shortener/internal/initializers"
+	"github.com/YogeshUpdhyay/url-shortener/internal/models"
 )
 
 func RedirectUrl(c *gin.Context) {

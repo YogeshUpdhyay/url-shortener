@@ -8,7 +8,7 @@ import (
 	"os"
 	"time"
 
-	"github.com/YogeshUpdhyay/url-shortner/internal/constants"
+	"github.com/YogeshUpdhyay/url-shortener/internal/constants"
 	"github.com/golang-jwt/jwt/v5"
 )
 
