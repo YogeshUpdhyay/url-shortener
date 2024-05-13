@@ -4,11 +4,16 @@ import (
 	"log"
 	"net/http"
 
+	"github.com/YogeshUpdhyay/url-shortener/internal/initializers"
+	"github.com/YogeshUpdhyay/url-shortener/internal/models"
 	"github.com/YogeshUpdhyay/url-shortener/internal/serializers"
+	"github.com/YogeshUpdhyay/url-shortener/internal/utils"
 	"github.com/gin-gonic/gin"
 )
 
 func CreateApp(ctx *gin.Context) {
+
+	log.Println(ctx.GetHeader("Authorization"))
 	// parse the request
 	request := serializers.CreateAppRequest{}
 	err := ctx.ShouldBindJSON(&request)
@@ -39,9 +44,40 @@ func CreateApp(ctx *gin.Context) {
 	}
 
 	// run business logic
-	// apiKey, err
-	// credential := models.Credential{
-	// 	AppName: request.AppName,
-	// 	ApiKey: ,
-	// }
+	apiKey, err := utils.GenerateRandomString()
+	if err != nil {
+		log.Println("CreateApp: Error generating the apikey")
+		ctx.AbortWithStatusJSON(
+			http.StatusInternalServerError,
+			gin.H{
+				"msg":    "InternalServer",
+				"detail": err.Error(),
+			},
+		)
+		return
+	}
+
+	credential := models.Credential{
+		AppName: request.AppName,
+		ApiKey:  apiKey,
+	}
+	result := initializers.DB.Create(&credential)
+	if result.Error != nil {
+		log.Println("CreateApp: Error creating app credntials.")
+		log.Println(result.Error.Error())
+		ctx.AbortWithStatusJSON(
+			http.StatusInternalServerError,
+			gin.H{
+				"msg":    "Internal Server Error.",
+				"detail": result.Error.Error(),
+			},
+		)
+		return
+	}
+
+	ctx.JSON(http.StatusOK, &serializers.CreateAppResponse{
+		AppName: credential.AppName,
+		ApiKey:  credential.ApiKey,
+		ID:      credential.ID,
+	})
 }

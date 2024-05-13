@@ -1,5 +1,7 @@
 package constants
 
-import "errors"
+import (
+	"errors"
+)
 
 var ValidationError = errors.New("Invalid request payload")

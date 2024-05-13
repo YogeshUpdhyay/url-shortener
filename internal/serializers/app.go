@@ -16,5 +16,5 @@ func (r *CreateAppRequest) Validate() error {
 type CreateAppResponse struct {
 	AppName string `json:"appName"`
 	ApiKey  string `json:"apiKey"`
-	ID      int    `json:"id"`
+	ID      uint   `json:"id"`
 }
