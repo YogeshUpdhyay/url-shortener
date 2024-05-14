@@ -81,12 +81,27 @@ func CreateApp(ctx *gin.Context) {
 }
 
 func HandleListApps(ctx *gin.Context) {
+	// creating pagination model for app list
+	paginationModel := utils.Pagination{}
+	err := paginationModel.CreateFromContext(ctx)
+	if err != nil {
+		log.Println("HandleListApps: Error creating pagination model.")
+		ctx.AbortWithStatusJSON(
+			http.StatusBadRequest,
+			gin.H{
+				"msg":    "Bad Request",
+				"detail": err.Error(),
+			},
+		)
+		return
+	}
+
 	// querying all applications and pagination
 	apps := []models.Credential{}
 
-	result := initializers.DB.Find(&apps)
+	result := initializers.DB.Scopes(utils.Paginate(&paginationModel)).Find(&apps)
 	if result.Error != nil {
-		log.Println("HandleListApps: Error querying the app credentials.")
+		log.Printf("HandleListApps: Error querying the app credentials - %s.\n", result.Error.Error())
 		ctx.AbortWithStatusJSON(
 			http.StatusInternalServerError,
 			gin.H{
@@ -96,5 +111,13 @@ func HandleListApps(ctx *gin.Context) {
 		)
 		return
 	}
+	log.Println("HandleListApps: Records queried for apps.")
 
+	ctx.JSON(
+		http.StatusOK,
+		&serializers.ListAppResponse{
+			PaginationResponse: serializers.PaginationResponse{PageNumber: paginationModel.PageNumber, PageSize: paginationModel.PageSize},
+			Results:            &apps,
+		},
+	)
 }

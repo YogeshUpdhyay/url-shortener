@@ -14,6 +14,10 @@ const (
 	AuthHeaderKey               = "Authorization"
 	ApiKeyHeaderKey             = "X-Api-Key"
 	AuthenticatedUserContextKey = "USER"
+
+	// pagination
+	PaginationPageNumberKey = "pageNumber"
+	PaginationPageSizeKey   = "pageSize"
 )
 
 // routes

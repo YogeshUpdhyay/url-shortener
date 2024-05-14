@@ -9,7 +9,7 @@ type AuthenticateRequest struct {
 
 func (r *AuthenticateRequest) Validate() error {
 	if r.Password == constants.Empty || r.Email == constants.Empty {
-		return constants.ValidationError
+		return constants.ErrValidatiingRequest
 	}
 	return nil
 }
