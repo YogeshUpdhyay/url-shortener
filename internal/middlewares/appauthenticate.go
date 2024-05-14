@@ -11,7 +11,7 @@ import (
 )
 
 // authenticate apps that are using the url-shortener as service
-func AppAuthenticate() gin.HandlerFunc {
+func AppAuthenticateMiddleware() gin.HandlerFunc {
 	return func(ctx *gin.Context) {
 		// get the api key header that is used to authenticate the app request
 		// validating the api key

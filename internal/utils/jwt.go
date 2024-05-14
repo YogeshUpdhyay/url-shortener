@@ -38,3 +38,7 @@ func CreateUserAccessToken(userId uint) (string, error) {
 
 	return tokenString, nil
 }
+
+func ValidateUserToken(tokenString string) error {
+	return nil
+}
