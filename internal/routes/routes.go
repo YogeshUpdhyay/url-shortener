@@ -5,6 +5,7 @@ import (
 
 	"github.com/YogeshUpdhyay/url-shortener/internal/constants"
 	"github.com/YogeshUpdhyay/url-shortener/internal/controllers"
+	"github.com/YogeshUpdhyay/url-shortener/internal/middlewares"
 )
 
 func RegisterRoutes(router *gin.Engine) {
@@ -17,8 +18,8 @@ func RegisterRoutes(router *gin.Engine) {
 			v1Router.POST(constants.ShortenUrlRoute, controllers.ShortenUrl)
 			v1Router.POST(constants.DeleteUrlRoute, controllers.DeleteUrl)
 			v1Router.POST(constants.AuthenticateRoute, controllers.Authenticate)
-			v1Router.POST(constants.CreateAppRoute, controllers.CreateApp)
-
+			v1Router.POST(constants.CreateAppRoute, middlewares.UserAuthenticateMiddleware(), controllers.CreateApp)
+			v1Router.GET(constants.ListAppsRoute, middlewares.UserAuthenticateMiddleware(), controllers.HandleListApps)
 		}
 	}
 

@@ -12,8 +12,6 @@ import (
 )
 
 func CreateApp(ctx *gin.Context) {
-
-	log.Println(ctx.GetHeader("Authorization"))
 	// parse the request
 	request := serializers.CreateAppRequest{}
 	err := ctx.ShouldBindJSON(&request)
@@ -80,4 +78,23 @@ func CreateApp(ctx *gin.Context) {
 		ApiKey:  credential.ApiKey,
 		ID:      credential.ID,
 	})
+}
+
+func HandleListApps(ctx *gin.Context) {
+	// querying all applications and pagination
+	apps := []models.Credential{}
+
+	result := initializers.DB.Find(&apps)
+	if result.Error != nil {
+		log.Println("HandleListApps: Error querying the app credentials.")
+		ctx.AbortWithStatusJSON(
+			http.StatusInternalServerError,
+			gin.H{
+				"msg":    "Internal Server Error",
+				"detail": "Error querying the app credentials.",
+			},
+		)
+		return
+	}
+
 }

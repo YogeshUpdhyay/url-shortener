@@ -11,8 +11,9 @@ const (
 	RootUserPasswordEnvKey = "ROOT_USER_PASSWORD"
 
 	// header keys
-	AuthHeaderKey   = "Authorization"
-	ApiKeyHeaderKey = "X-Api-Key"
+	AuthHeaderKey               = "Authorization"
+	ApiKeyHeaderKey             = "X-Api-Key"
+	AuthenticatedUserContextKey = "USER"
 )
 
 // routes
@@ -25,6 +26,7 @@ const (
 	DeleteUrlRoute    = "/deleteurl"
 	AuthenticateRoute = "/authenticate"
 	CreateAppRoute    = "/createapp"
+	ListAppsRoute     = "/listapps"
 
 	// app route constants
 	RedirectUrlRoute   = "/:slug"
