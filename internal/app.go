@@ -16,11 +16,15 @@ func GetApp() *gin.Engine {
 
 	router = gin.Default()
 
-	// CORS middleware configuration
-	config := cors.DefaultConfig()
-	config.AllowAllOrigins = true
-	config.AllowMethods = []string{"GET", "POST", "PUT", "DELETE", "OPTIONS"}
-	config.AllowHeaders = []string{"Origin", "Content-Type"}
+	// CORS configuration
+	config := cors.Config{
+		AllowAllOrigins:  true,                                                // Allow all origins
+		AllowMethods:     []string{"POST", "GET", "OPTIONS", "PUT", "DELETE"}, // Allowed HTTP methods
+		AllowHeaders:     []string{"*"},                                       // Allow all headers
+		ExposeHeaders:    []string{"Content-Length"},                          // Optional: expose additional headers
+		AllowCredentials: true,                                                // Optional: allow credentials if needed
+		MaxAge:           0,                                                   // Disable caching of the preflight response
+	}
 
 	// Use CORS middleware
 	router.Use(cors.New(config))

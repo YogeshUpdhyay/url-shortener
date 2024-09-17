@@ -14,7 +14,7 @@ const HeroSection = () => {
 
         const options = {
             body: JSON.stringify({url: url}),
-            headers: {'Content-Type': 'aplication/json'},
+            headers: {'Content-Type': 'aplication/json', "X-Api-Key": "qWo91gP0sQU4/ZeqWILtVcTmKn3fK52t"},
             method: 'POST'
         }
         
