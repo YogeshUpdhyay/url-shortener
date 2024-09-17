@@ -15,7 +15,7 @@ func RegisterRoutes(router *gin.Engine) {
 		// v1 routes
 		v1Router := apiRouter.Group(constants.V1Route)
 		{
-			v1Router.POST(constants.ShortenUrlRoute, controllers.ShortenUrl)
+			v1Router.POST(constants.ShortenUrlRoute, middlewares.AppAuthenticateMiddleware(), controllers.ShortenUrl)
 			v1Router.POST(constants.DeleteUrlRoute, controllers.DeleteUrl)
 			v1Router.POST(constants.AuthenticateRoute, controllers.Authenticate)
 			v1Router.POST(constants.CreateAppRoute, middlewares.UserAuthenticateMiddleware(), controllers.CreateApp)
